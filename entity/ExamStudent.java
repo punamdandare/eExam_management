@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -15,14 +16,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamStudent extends CommonBase{
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.MERGE)
 	Student student;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	List<Exam> exams;
 
 }
